@@ -1,0 +1,27 @@
+POST http://localhost:3000/blog
+Content-Type: application/json
+
+{
+    "title": "Another new blog",
+    "description": "Another blog post for you!",
+    "blogBody": "Lorem lorem lorem"
+}
+
+###
+GET http://localhost:3000/blog
+
+###
+
+PUT http://localhost:3000/blog/ce24fac8-65ec-47a5-b0b8-af92bf52b326
+Content-Type: application/json
+
+{
+    "title": "Blog deletado",
+    "description": "Another another blog post for you!",
+    "blogBody": "Lorem lorem lorem lorem lorem"
+
+}
+
+###
+
+DELETE http://localhost:3000/blog/ce24fac8-65ec-47a5-b0b8-af92bf52b326
