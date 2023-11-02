@@ -1,38 +1,35 @@
 import { randomUUID } from "crypto";
+import {sql} from "./db.js"
 
-export class BlogDatabase{
-    #allBlogs = new Map();
+export class BlogDatabasePostgres{
 
-    createBlog(newBlog){
+    async createBlog(newBlog){
         const blogId = randomUUID();
-        this.#allBlogs.set(blogId, newBlog);
+        await sql`INSERT INTO blogs (id, title, description, blogBody) 
+        VALUES (${blogId},${newBlog.title},${newBlog.description},${newBlog.blogBody})`;
     }
 
-    listBlogs(searchParam){
-        return Array.from(this.#allBlogs.entries())
-        .map((blogEntrie)=>{
-            const blogId = blogEntrie[0];
-            const blogBody = blogEntrie[1]
+    async listBlogs(searchParam){
+        let blogs;
 
-            return {
-                blogId,
-                ...blogBody,
-            }
-        })
-        .filter(blog=>{
-            if(searchParam){
-                return blog.title.includes(searchParam)
-            }
-            else
-                return true;
-        })
+        if(searchParam){
+    
+            blogs = await sql`SELECT id, title, description, blogBody FROM blogs WHERE title ILIKE ${'%'+ searchParam + '%'}`
+        }
+        else{
+            blogs = await sql`SELECT * FROM blogs`
+        }
+        console.log(blogs)
+        return blogs;
     }
 
-    updateBlog(blogId, newBlog){
-        this.#allBlogs.set(blogId, newBlog);
+    async updateBlog(blogId, newBlog){
+        await sql`UPDATE blogs
+        SET title = ${newBlog.title}, description = ${newBlog.description}, blogBody= ${newBlog.blogBody}
+        WHERE id= ${blogId}`
     }
 
-    deleteBlog(blogId){
-        this.#allBlogs.delete(blogId);
+    async deleteBlog(blogId){
+        await sql`DELETE FROM blogs WHERE id = ${blogId}`
     }
 }

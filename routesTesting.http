@@ -2,7 +2,7 @@ POST http://localhost:3000/blog
 Content-Type: application/json
 
 {
-    "title": "Another new blog",
+    "title": "Testing",
     "description": "Another blog post for you!",
     "blogBody": "Lorem lorem lorem"
 }
@@ -12,16 +12,16 @@ GET http://localhost:3000/blog
 
 ###
 
-PUT http://localhost:3000/blog/ce24fac8-65ec-47a5-b0b8-af92bf52b326
+PUT http://localhost:3000/blog/e8b9b67e-8ba4-4d8c-a7d7-c2c07be1f7eb
 Content-Type: application/json
 
 {
-    "title": "Blog deletado",
-    "description": "Another another blog post for you!",
+    "title": "Using AI to improve performance",
+    "description": "Let's learn AI",
     "blogBody": "Lorem lorem lorem lorem lorem"
 
 }
 
 ###
 
-DELETE http://localhost:3000/blog/ce24fac8-65ec-47a5-b0b8-af92bf52b326
+DELETE http://localhost:3000/blog/eedc2f3a-21bb-4f15-88ad-79631c3d5bd6
