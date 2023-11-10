@@ -1,14 +1,21 @@
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 import express, { response } from 'express';
 import { BlogDatabasePostgres } from './database-postgres.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../client/dist')))
 
 const port = 3000;
 
 const database = new BlogDatabasePostgres();
 
 app.get('/', (req, res)=>{
-    res.send('Hello World');
+    res.sendFile(path.resolve(__dirname,'../client/dist/', 'index.html'));
 })
 
 app.get('/blog', async (req, res)=>{

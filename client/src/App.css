@@ -1,3 +1,14 @@
 .radialBg{
-    background: radial-gradient(closest-side, #222222, #0A0A0A);
+    background: radial-gradient(closest-side, #1a1a1a, #0A0A0A);
 }
+
+.blogGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    
+}
+
+  

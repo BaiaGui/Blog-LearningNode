@@ -19,7 +19,6 @@ export class BlogDatabasePostgres{
         else{
             blogs = await sql`SELECT * FROM blogs`
         }
-        console.log(blogs)
         return blogs;
     }
 
